@@ -1,8 +1,6 @@
 import { PageElement } from "./page-elements.js"
 import { buildRequestUrl, collectRequestHeaders } from "./request-util.js"
 
-const METHODS_WITH_BODY = new Set(["POST", "PUT", "PATCH", "DELETE"]);
-
 const methodEl = document.getElementById("method");
 const addParamBtn = document.getElementById("add-param");
 const addHeaderBtn = document.getElementById("add-header");
@@ -14,7 +12,7 @@ const responseHeadersEl = document.getElementById("response-headers");
 const paramsContainer = document.getElementById("params");
 const headersContainer = document.getElementById("headers");
 
-const pageElement = new PageElement(paramsContainer, headersContainer, bodyEl)
+const pageElement = new PageElement(paramsContainer, headersContainer, bodyEl, methodEl)
 
 
 methodEl.addEventListener("change", () => pageElement.updateBodyState());
@@ -107,10 +105,6 @@ async function sendRequest() {
     } finally {
         sendBtn.disabled = false;
     }
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    });
 };
 
 function setError(msg) {
@@ -120,6 +114,4 @@ function setError(msg) {
     responseHeadersEl.textContent = "";
 }
 
-pageElement.addParamRow();
-pageElement.addHeaderRow();
-updateBodyState();
+pageElement.updateBodyState();

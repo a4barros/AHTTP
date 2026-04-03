@@ -1,10 +1,13 @@
 import { escapeAttr } from "./util.js";
+const METHODS_WITH_BODY = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 export class PageElement {
-    constructor(paramsContainer, headersContainer, bodyEl) {
+
+    constructor(paramsContainer, headersContainer, bodyEl, methodEl) {
         this.paramsContainer = paramsContainer;
         this.headersContainer = headersContainer;
         this.bodyEl = bodyEl;
+        this.methodEl = methodEl;
     }
 
     addParamRow(key = "", value = "") {
@@ -46,6 +49,6 @@ export class PageElement {
     }
 
     updateBodyState() {
-        this.bodyEl.disabled = !METHODS_WITH_BODY.has(methodEl.value);
+        this.bodyEl.disabled = !METHODS_WITH_BODY.has(this.methodEl.value);
     }
 }
