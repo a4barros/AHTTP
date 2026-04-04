@@ -1,4 +1,4 @@
-import { PageElement } from "./page-elements.js"
+import { PageElement, METHODS_WITH_BODY } from "./page-elements.js"
 import { buildRequestUrl, collectRequestHeaders } from "./request-util.js"
 
 const methodEl = document.getElementById("method");

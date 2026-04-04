@@ -1,5 +1,5 @@
 import { escapeAttr } from "./util.js";
-const METHODS_WITH_BODY = new Set(["POST", "PUT", "PATCH", "DELETE"]);
+export const METHODS_WITH_BODY = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 
 export class PageElement {
 
